@@ -17,10 +17,10 @@
         <Button x:Name="startWordsbutton" Content="Start" HorizontalAlignment="Left" Margin="80,245,0,0" VerticalAlignment="Top" Width="75" Click="startWordsbutton_Click"/>
         <Button x:Name="cancelWordsbutton" Content="Wyjdź" HorizontalAlignment="Left" Margin="80,302,0,0" VerticalAlignment="Top" Width="75" Click="cancelWordsbutton_Click"/>
         <ProgressBar x:Name="ProgressWords" HorizontalAlignment="Left" Height="60" Margin="205,500,0,0" VerticalAlignment="Top" Width="320" ValueChanged="ProgressBar_ValueChanged"/>
-        <Image x:Name="x" Source="x.png" HorizontalAlignment="Left" Height="65" Margin="245,375,0,0" VerticalAlignment="Top" Width="70"/>
-        <Image x:Name="ok" Source="ok.png" HorizontalAlignment="Left" Height="65" Margin="410,375,0,0" VerticalAlignment="Top" Width="60"/>
-        <Image x:Name="okclick" Source="okclick.png" HorizontalAlignment="Left" Height="60" Margin="410,375,0,0" VerticalAlignment="Top" Width="60" Opacity="0"/>
-        <Image x:Name="xclick" Source="xclick.png"  HorizontalAlignment="Left" Height="70" Margin="245,375,0,0" VerticalAlignment="Top" Width="70" Opacity="0"/>
+        <Image x:Name="x" Source="/Resources/x.png" HorizontalAlignment="Left" Height="65" Margin="245,375,0,0" VerticalAlignment="Top" Width="70" Opacity="1"/>
+        <Image x:Name="ok" Source="/Resources/ok.png" HorizontalAlignment="Left" Height="65" Margin="410,375,0,0" VerticalAlignment="Top" Width="60" Opacity="1"/>
+        <Image x:Name="okclick" Source="/Resources/okclick.png" HorizontalAlignment="Left" Height="60" Margin="410,375,0,0" VerticalAlignment="Top" Width="60" Opacity="0"/>
+        <Image x:Name="xclick" Source="/Resources/xclick.png"  HorizontalAlignment="Left" Height="70" Margin="245,375,0,0" VerticalAlignment="Top" Width="70" Opacity="0"/>
         <Label x:Name="xlabel" Content="0" HorizontalAlignment="Left" Margin="270,450,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.438,0.577"/>
         <Label x:Name="oklabel" Content="0" HorizontalAlignment="Left" Margin="435,450,0,0" VerticalAlignment="Top"/>
 

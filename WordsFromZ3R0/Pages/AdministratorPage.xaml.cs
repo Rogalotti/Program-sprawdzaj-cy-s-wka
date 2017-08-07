@@ -50,6 +50,7 @@ namespace WordsFromZ3R0.Pages
                 comboBoxRole.IsEnabled = false;
                 insertButton.IsEnabled = false;
                 deleteButton.IsEnabled = false;
+                loginAddtextBox.IsEnabled = false;
             }
         }
 
@@ -88,8 +89,15 @@ namespace WordsFromZ3R0.Pages
             }
             else
             {
-                CreateUserAccountIfNotExists(loginAddtextBox.Text, passwordAddBox.Password, comboBoxRole.Text);
-                FillDataGrid();
+                if (DoesUserAccountExists(loginAddtextBox.Text))
+                {
+                    MessageBox.Show("Podany login już istnieje.");
+                }
+                else
+                {
+                    CreateUserAccount(loginAddtextBox.Text, passwordAddBox.Password, comboBoxRole.Text);
+                    FillDataGrid();
+                }
             }
         }
 
@@ -136,7 +144,7 @@ namespace WordsFromZ3R0.Pages
             }
             else
             {
-                if (DoesUserAccountExists(loginAddtextBox.Text))
+                if (!DoesUserAccountExists(loginAddtextBox.Text))
                 {
                     MessageBox.Show("Użytkownik o podanej nazwie nie istnieje");
                     loginAddtextBox.Clear();
@@ -209,9 +217,9 @@ namespace WordsFromZ3R0.Pages
             }
         }
 
-        private void FillDataGridWords(int id)
+        private DataView FillDataGridWords(int setId)
         {
-            GetWordsForSelectedSet(id);
+            return GetWordsForSelectedSet(setId);
         }
 
         private void DataGridCategory_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -244,7 +252,7 @@ namespace WordsFromZ3R0.Pages
                 deleteWordsTextBox.Clear();
                 int idSet = 0;
                 Int32.TryParse(idSetTexBox.Text, out idSet);
-                FillDataGridWords(idSet);
+                dataGridWords.ItemsSource = FillDataGridWords(idSet);
             }
         }
 
@@ -300,6 +308,7 @@ namespace WordsFromZ3R0.Pages
                     int idSet = 0;
                     int.TryParse(idSetTexBox.Text, out idSet);
                     AddNewWordWithTranslation(addWord1TextBox.Text, addWord2TextBox.Text, idSet);
+                    dataGridWords.ItemsSource = FillDataGridWords(idSet);
                     addWord1TextBox.Clear();
                     addWord2TextBox.Clear();
                 }
@@ -341,7 +350,7 @@ namespace WordsFromZ3R0.Pages
             }
             else
             {
-                if (DoesCategoryExists(deleteCategoryTextBox.Text))
+                if (!DoesCategoryExists(deleteCategoryTextBox.Text))
                 {
                     MessageBox.Show("Kategoria o podanej nazwie nie istnieje");
                     deleteCategoryTextBox.Clear();
@@ -394,7 +403,7 @@ namespace WordsFromZ3R0.Pages
             }
             else
             {
-                if (DoesWordsSetExists(deleteSetTextBox.Text, idAccount))
+                if (!DoesWordsSetExists(deleteSetTextBox.Text, idAccount))
                 {
                     MessageBox.Show("Zestaw o podanej nazwie nie istnieje");
                     deleteSetTextBox.Clear();
@@ -435,7 +444,7 @@ namespace WordsFromZ3R0.Pages
                 int idSet = 0;
                 Int32.TryParse(idSetTexBox.Text.ToString(), out idSet);
                 DeleteWordWithTranslation(deleteWordsTextBox.Text);
-                FillDataGridWords(idSet);
+                dataGridWords.ItemsSource = FillDataGridWords(idSet);
                 deleteWordsTextBox.Clear();
             }
         }
@@ -492,7 +501,7 @@ namespace WordsFromZ3R0.Pages
                     licznik1 = licznik1 + 2;
                     licznik2 = licznik2 + 2;
                 }
-                FillDataGridWords(idSet);
+                dataGridWords.ItemsSource = FillDataGridWords(idSet);
                 addWord1TextBox.Clear();
                 addWord2TextBox.Clear();
             }

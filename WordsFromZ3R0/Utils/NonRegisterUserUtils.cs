@@ -18,25 +18,25 @@ namespace WordsFromZ3R0.Utils
             }
             else
             {
-                MessageBox.Show("Maksymalny limit słówek dla niezarejestrowanego użytkownika wynosi 30");
+                MessageBox.Show("Maksymalny limit słówek dla niezarejestrowanego użytkownika wynosi " + NON_REGISTER_USER_WORDS_LIMIT);
             }
         }
 
         public static int GetNonRegisterUserWordsCount()
         {
-            SQLiteDataReader reader = null;
+            int RowCount = 0;
             try
             {
                 sql = string.Format("SELECT count(IdSet) FROM words where IdSet = @IdSet");
                 Command = new SQLiteCommand(sql, connection);
-                Command.Parameters.Add(new SQLiteParameter("@IdSet", NON_REGISTER_USER_WORDS_SET_ID));
-                reader = Command.ExecuteReader();
+                Command.Parameters.Add(new SQLiteParameter("@IdSet", NON_REGISTER_USER_WORDS_SET_ID.ToString()));
+                RowCount = Convert.ToInt32(Command.ExecuteScalar());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            return reader.RecordsAffected;
+            return RowCount;
         }
 
         public static void AddNewWordWithTranslation(string word, string translation, int wordsSetId)
@@ -49,6 +49,7 @@ namespace WordsFromZ3R0.Utils
                 Command.Parameters.Add(new SQLiteParameter("@Word1", word));
                 Command.Parameters.Add(new SQLiteParameter("@Word2", translation));
                 Command.ExecuteNonQuery();
+                MessageBox.Show("Słowo zostało dodane.");
             }
             catch (Exception ex)
             {

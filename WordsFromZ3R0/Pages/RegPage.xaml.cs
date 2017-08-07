@@ -34,10 +34,17 @@ namespace WordsFromZ3R0.Pages
                 {
                     if (regPasswordBox.Password.Equals(regPasswordBox2.Password))
                     {
-                        CreateUserAccountIfNotExists(regLoginBox.Text, regPasswordBox.Password, REGISTERED_USER_ROLE);
-                        MessageBox.Show("Konto zostało utworzone");
-                        var mainWindow = Application.Current.MainWindow as MainWindow;
-                        mainWindow.Content = new MainPage();
+                        if(DoesUserAccountExists(regLoginBox.Text))
+                        {
+                            MessageBox.Show("Wybrany użytkownik już istnieje.");
+                        }
+                        else
+                        {
+                            CreateUserAccount(regLoginBox.Text, regPasswordBox.Password, REGISTERED_USER_ROLE);
+                            MessageBox.Show("Konto zostało utworzone");
+                            var mainWindow = Application.Current.MainWindow as MainWindow;
+                            mainWindow.Content = new MainPage();
+                        }
                     }
                     else
                     {

@@ -29,8 +29,7 @@ namespace WordsFromZ3R0.Utils
 
         private static void CreateDatabaseFileIfNotExists()
         {
-            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WordsBase.db")))
-                connection = new SQLiteConnection(string.Format("Data Source={0}", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WordsBase.db")));   
+            connection = new SQLiteConnection(string.Format("Data Source={0}", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WordsBase.db")));
             connection.Open();
         }
 
@@ -104,7 +103,7 @@ namespace WordsFromZ3R0.Utils
             return Command.ExecuteReader().HasRows;
         }
 
-        private static void CreateUserAccount(string login, string password, string role)
+        public static void CreateUserAccount(string login, string password, string role)
         {
             try
             {
@@ -114,7 +113,6 @@ namespace WordsFromZ3R0.Utils
                 Command.Parameters.Add(new SQLiteParameter("@login", login));
                 Command.Parameters.Add(new SQLiteParameter("@password", HashPasswordIntoMd5(password)));
                 Command.ExecuteNonQuery();
-                MessageBox.Show("Konto zostało utworzone");
             }
             catch (Exception ex)
             {

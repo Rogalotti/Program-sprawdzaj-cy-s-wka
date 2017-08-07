@@ -26,22 +26,15 @@ namespace WordsFromZ3R0.Pages
         }
 
         private void AddWordsButton_Click(object sender, RoutedEventArgs e)
-        {    
+        {
             if (String.IsNullOrEmpty(addWord1TextBox.Text) || String.IsNullOrEmpty(addWord2TextBox.Text))
             {
                 MessageBox.Show("Uzupełnij pola słówek");
             }
             else
             {
-                if (String.IsNullOrEmpty(idSetTexBox.Text))
-                {
-                    MessageBox.Show("Wybierz zestaw");
-                }
-                else
-                {
-                    AddNewWordWithTranslationIfPossible(addWord1TextBox.Text, addWord2TextBox.Text);
-                    RefreshPage();
-                }
+                AddNewWordWithTranslationIfPossible(addWord1TextBox.Text, addWord2TextBox.Text);
+                RefreshPage();
             }
         }
 
@@ -52,7 +45,7 @@ namespace WordsFromZ3R0.Pages
 
         private void DataGridWords_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataGrid gd = (DataGrid) sender;
+            DataGrid gd = (DataGrid)sender;
             DataRowView row_selected = gd.SelectedItem as DataRowView;
             if (row_selected != null)
             {
@@ -62,7 +55,7 @@ namespace WordsFromZ3R0.Pages
 
         private void LogOutAdminButton_Click(object sender, RoutedEventArgs e)
         {
-           
+
             var mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow.Content = new MainPage();
         }

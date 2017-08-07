@@ -100,9 +100,6 @@
     <Compile Include="Pages\AdministratorPage.xaml.cs">
       <DependentUpon>AdministratorPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utils\AdminUtils.cs" />
     <Compile Include="Pages\BadConnectionPage.xaml.cs">
       <DependentUpon>BadConnectionPage.xaml</DependentUpon>
@@ -157,10 +154,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Page1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\RegPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,7 +192,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="x.png" />
+    <Resource Include="Resources\x.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -209,13 +202,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ok.png" />
+    <Resource Include="Resources\ok.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="okclick.png" />
+    <Resource Include="Resources\okclick.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="xclick.png" />
+    <Resource Include="Resources\xclick.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
