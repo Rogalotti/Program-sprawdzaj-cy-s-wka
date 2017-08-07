@@ -1,0 +1,82 @@
+Remigiusz Kowalski
+Temat: Program sprawdzający słówka "Words from Z3R0"
+
+Program został podzielony na:
+1. Const
+2. Pages
+3. Resources
+4. Utils
+
+Ad1.
+W folderze Const mamy różne stałe takie jak:
+limit słówek, rola admina, rola użytkownika, 
+
+
+Ad2.
+W folderze pages mamy strony (okna) programu. 
+Przy starcie programu MainWindow wywyłuje nam MainPage, 
+gdzie mamy przyciski logowania, wyjścia, rejestracji,
+sprawdzenia słówek bez logowania lub wyjścia z programu.
+Każdy z nich, oprócz logowania, prowadzi nas do odpowiedniej strony.
+MainLogButton prowadzi nas do LogPage
+MainRegButton prowadzi nas do RegPage
+MainOutButton kończy działanie programu
+MainShitButton prowadzi nas NonRegisterPage
+
+W LogPage mamy przycisk LoginLogButton, gdzie sprawdzamy czy uzytkownik istnieje w bazie i jaką ma rolę, jeśli tak to
+zostajemy przenoszeni do AdministratorPage jako użytkownik lub administrator
+
+W RegPage tworzymy konto użytkownika, jeśli login nie jest zajęty, a hasła są takie same, tworzy nam konto użytkownika z rolą user
+
+W AdministratorPage mamy metody:
+
+- DisableAdministratorFunctionalitiesIfRegularUser - jeśli mamy role user, to kategorie, i zmiana loginu lub roli jest nieaktywna
+
+- FillDataGrid - wypełnia DataGrid odpowiednimi danymi
+
+- DataGrid_MouseDoubleClick - dzięki podwójnemu kliknięciu możemy zaznaczać kategorie, zestawy, słówa, konta użytkowników 
+
+- Przyciski UpdateButton, insertButton, DeleteButton  służą do edycjji użytkowników
+
+- Przyciski AddCategoryButton, EditCategoryButton, DeleteCategoryButton służą do edycji kategorii 
+
+- Przyciski AddSetButton, EditSetButton, DeleteSetButton służą do edycji zestawów
+
+- Przyciski AddWordsButton, DeleteWordsButton służa do edycji słówek
+
+- AddFileWordsButton - dzięki tej metodzie jesteśmy w stanie dodać słówka z pliku tekstowego. 
+Najpierw możemy przeglądać pliki, tworzymy listę i dodajemy do niej linia po lini, następnie tworzymy 2 liczniki, gdzie
+1 licznik odpowiada za oryginały a 2 licznik za tłumaczenia i dodajemy je do bazy danych 
+
+W NonRegisterPage mamy możliwość dodania 30 słówek, i sprawdzenia ich znajomości
+
+W StartWordsPage tworzymy dwie listy, jedna to oryginały, druga to tłumaczenia, jest też DispatcherTimer, który zmienia
+przezroczystość obrazków.  
+Metody w StartWordsPage:
+- Question -  wybiera wszystkie słówka, gdzie idSet = 0 i zapisuje je do list
+- Button_Click - sprawdza czy odpowiedzieliśmy dobrze lub źle na słówko, usuwa z listy zgadnięte słówka, 
+zwiększa pasek stanu 
+- RandomWords - losuje słówka
+
+Ad3.
+W folderze Resources są obrazki, które używane są w StartWordsPage
+
+Ad4.
+Folder Utils, jest najważnieszym folderem, tam zndajują sie prawie wszystkie metody.
+Nazwy metod są wymowne i dokładnie ukazują to co robią.
+a) DatabaseUtils - tworzymy baze danych, tabele (Account, Category, Words, WordSet), tworzenie konta admina
+  otwieranie połączenia, Hashowanie hasła MD5
+  
+b) AdminUtils - zmiana roli użytkownika, zmiana roli i hasła, usuwanie użytkownika, dodawanie, usuwanie,
+sprawdzanie czy istnieje kategoria, dodawanie, edytowanie zestawu
+
+c) RegisterUserUtils - wybranie swoich danych z bazy danych, zmiana swojego hasła
+
+d) NonRegisterUserUtils:
+AddNewWordWithTranslationIfPossible - dodaje słówka jeśli nie przekroczyliśmy limitu słówek 
+GetNonRegisterUserWordsCount - zwraca liczbę dodanych słówek
+Możemy dodać słówka, lub je usunąć. 
+
+
+W kodzie Utils są statyczne, starałem się trzymać zasad Clean Code, więc myśle że komentarze mogą tylko przeszkadzać
+w czytelności programu. 
