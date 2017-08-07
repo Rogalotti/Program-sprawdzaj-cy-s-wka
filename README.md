@@ -1,1 +1,1 @@
-Link do youtube: https://www.youtube.com/watch?v=dLIqcwoqsSk&feature=youtu.be
+Link do youtube: https://youtu.be/dLIqcwoqsSk
